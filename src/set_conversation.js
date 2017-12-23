@@ -30,13 +30,13 @@ function putItem(params, getMessage, callback) {
             status = "error";
         }
 
-        var result = getMessage(status,params.Item['id']);
+        var result = getMessage(status,params.Item);
         callback(null, result);
     });
 }
 
-function getMessage(status,uniqid){
-    var body = {"status": status, "id":uniqid};
+function getMessage(status,infos){
+    var body = {"status": status, infos};
     var statusCode = 200;
     return {
         "statusCode": statusCode,
