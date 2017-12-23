@@ -20,6 +20,10 @@
 ```
 > Give me stats
 ```
+- Displays the list of features
+```
+> What are your features
+```
 
 
 ## Develpement
