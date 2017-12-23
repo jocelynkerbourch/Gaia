@@ -1,5 +1,7 @@
 # Gaia
 
+![Gaia](https://s3.eu-west-3.amazonaws.com/botgaia/gaia.png "Logo")
+
 #### Wellness Bot for Heores.
 
 ## Commands
