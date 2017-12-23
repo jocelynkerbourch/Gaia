@@ -1,10 +1,10 @@
 var AWS = require('aws-sdk');
 
 exports.handler = function(event, context, callback) {
-    setQuestion (event, callback);
+    setTips (event, callback);
 }
  
-function setQuestion (event, callback) {
+function setTips (event, callback) {
 
     var uniqid = (new Date().getTime() + Math.floor((Math.random()*10000)+1)).toString(16);
     var title = getParameter(event,"title");
