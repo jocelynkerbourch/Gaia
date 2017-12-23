@@ -1,6 +1,6 @@
 # Gaia
 
-![Gaia](https://s3.eu-west-3.amazonaws.com/botgaia/gaia.png "Gaia") { width: 200px; }
+![Gaia](https://s3.eu-west-3.amazonaws.com/botgaia/gaia.png "Gaia")
 
 #### Wellness Bot for Heores.
 
