@@ -38,22 +38,23 @@ function setQuestion (event, callback) {
 }
 
 function putItem(params, getMessage, callback) {
+    if(
+        params.Item.question!=null
+    ){
+        var documentClient = new AWS.DynamoDB.DocumentClient();
+        documentClient.put(params, function(err, data) {
+            var status = "insert";
+            if (err) {
+                status = "error";
+            }
 
-    if(params.Item.question==null){
+            var result = getMessage(status,params.Item);
+            callback(null, result);
+        });
+    }else{
         var result = getMessage('error',params.Item);
         callback(null, result);
     }
-
-    var documentClient = new AWS.DynamoDB.DocumentClient();
-    documentClient.put(params, function(err, data) {
-        var status = "insert";
-        if (err) {
-            status = "error";
-        }
-
-        var result = getMessage(status,params.Item);
-        callback(null, result);
-    });
 }
 
 function getMessage(status,infos){
