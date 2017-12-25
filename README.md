@@ -14,9 +14,17 @@
 ```
  > Add question
 ```
+ - List all question
+```
+ > Give me the list of questions
+```
 - Add a tips
 ```
 > Add tips
+```
+ - List all tips
+```
+ > Give me the list of tips
 ```
 - Displays the usage stats of the bot
 ```
