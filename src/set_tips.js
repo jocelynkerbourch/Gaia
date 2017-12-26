@@ -1,4 +1,5 @@
 var AWS = require('aws-sdk');
+var tools = require('./tools.js');
 
 exports.handler = function(event, context, callback) {
     setTips (event, callback);
@@ -24,7 +25,7 @@ function setTips (event, callback) {
         Item:items
     };
 
-    putItem(params, getMessage, callback);
+    putItem(params, tools.getMessage, callback);
 }
 
 function putItem(params, getMessage, callback) {
@@ -55,26 +56,3 @@ function putItem(params, getMessage, callback) {
         callback(null, result);
     }
 }
-
-function getMessage(status,infos){
-    var body = {"status": status, infos};
-    var statusCode = 200;
-    return {
-        "statusCode": statusCode,
-        "headers": {},
-        "body": JSON.stringify(body)
-    };
-}
-
-function getParameter(event,param) {
-    var val = null;
-    if (event.queryStringParameters !== null && event.queryStringParameters !== undefined) {
-        if (event.queryStringParameters[param] !== undefined && 
-            event.queryStringParameters[param] !== null && 
-            event.queryStringParameters[param] !== "") {
-            val = event.queryStringParameters[param] ;
-        }
-    }
-    return val;
-}
-
