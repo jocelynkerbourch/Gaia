@@ -9,10 +9,13 @@ function setConversation (callback) {
 
     var uniqid = (new Date().getTime() + Math.floor((Math.random()*10000)+1)).toString(16);
     var created_at = new Date().toISOString();
+    var updated_at = new Date().toISOString();
     var status = "pending";
     var items = {
             "id": uniqid,
             "created_at": created_at,
+            "updated_at": updated_at,
+            "calculed_tips_id": "null",
             "status": status
         };
     var params = {
@@ -20,7 +23,7 @@ function setConversation (callback) {
         Item:items
     };
 
-    putItem(params, getMessage, callback);
+    putItem(params, tools.getMessage, callback);
 }
 
 function putItem(params, getMessage, callback) {

@@ -1,4 +1,4 @@
-module.export ={
+module.exports ={
     getMessage : function (status,infos){
         var body = {"status": status, infos};
         var statusCode = 200;
@@ -7,7 +7,7 @@ module.export ={
             "headers": {},
             "body": JSON.stringify(body)
         };
-    }
+    },
 
     getParameter : function (event,param) {
         var val = null;
@@ -19,7 +19,7 @@ module.export ={
             }
         }
         return val;
-    }
+    },
 
     shuffle : function (array) {
         var currentIndex = array.length, temporaryValue, randomIndex;

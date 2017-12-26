@@ -2,6 +2,7 @@ var AWS = require('aws-sdk');
 var tools = require('./tools.js');
 
 exports.handler = function(event, context, callback) {
+    console.log(tools);
     getTips (event, callback);
 }
  
@@ -14,10 +15,10 @@ function getTips (event, callback) {
         ExpressionAttributeValues : {":conversation" : conversation}
     };
 
-    getTipsByConversation(params, getTipsByPilar, tools.getMessage, callback);
+    getTipsByConversation(conversation, params, getTipsByPilar, tools.getMessage, callback);
 }
 
-function getTipsByConversation(params, getTipsByPilar, getMessage, callback) {
+function getTipsByConversation(conversation, params, getTipsByPilar, getMessage, callback) {
     if(params.ExpressionAttributeValues[":conversation"]!= null) {
         var documentClient = new AWS.DynamoDB.DocumentClient();
 
@@ -34,7 +35,7 @@ function getTipsByConversation(params, getTipsByPilar, getMessage, callback) {
                     };
                 });
                 
-                getResponses(questions,0,callback);
+                getResponses(conversation, questions, 0, callback);
             }
         });
         
@@ -44,7 +45,7 @@ function getTipsByConversation(params, getTipsByPilar, getMessage, callback) {
     }
 }
 
-function getResponses(questions,index,callback){
+function getResponses(conversation, questions, index, callback){
     if (index==questions.length){
        var notes = [
           { name: "mind", value: 0 },
@@ -64,7 +65,7 @@ function getResponses(questions,index,callback){
         notes.reverse();
         var type = notes[0].name;
 
-        var paramsSelect = {
+        var paramsTips = {
             TableName: "gaia_tips",
             FilterExpression: "#type=:type",
             ExpressionAttributeValues: {":type":type},
@@ -72,7 +73,7 @@ function getResponses(questions,index,callback){
             
         };
         
-        getTipsByPilar(paramsSelect,tools.getMessage, callback);
+        getTipsByPilar(conversation, paramsTips, tools.getMessage, callback);
 
     }else{
         var documentClient = new AWS.DynamoDB.DocumentClient();
@@ -98,12 +99,12 @@ function getResponses(questions,index,callback){
                     questions[index]['notes']=notes;
                 }
             }
-            getResponses(questions,index+1,callback);
+            getResponses(conversation, questions, index+1, callback);
         }); 
     }
 }
 
-function getTipsByPilar(params, getMessage, callback){
+function getTipsByPilar(conversation, params, getMessage, callback){
     var documentClient = new AWS.DynamoDB.DocumentClient();
 
     documentClient.scan(params, function(err, data) {
@@ -120,6 +121,25 @@ function getTipsByPilar(params, getMessage, callback){
                 infos['data']=random[0];
             }
         }
+        
+        var paramsUpdate = {
+            TableName: "gaia_conversations",
+            UpdateExpression: "set calculed_tips_id = :tips, updated_at = :date, #status = :status",
+            Key: {"id": conversation},
+            ExpressionAttributeNames : {
+                "#status": "status"
+            },
+            ExpressionAttributeValues : {
+                ":status": "end",
+                ":tips": infos['data']['id'],
+                ":date": new Date().toISOString()
+            }
+        }
+
+        documentClient.update(paramsUpdate, function(err, data){
+            console.log(err);
+        });
+        
         var result = getMessage(status,infos);
         callback(null, result);
     });
