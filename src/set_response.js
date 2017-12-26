@@ -1,4 +1,5 @@
 var AWS = require('aws-sdk');
+var tools = require('./tools.js');
 
 exports.handler = function(event, context, callback) {
     setResponse (event, callback);
@@ -8,9 +9,9 @@ function setResponse (event, callback) {
 
     var uniqid = (new Date().getTime() + Math.floor((Math.random()*10000)+1)).toString(16);
     var created_at = new Date().toISOString();
-    var question_id = getParameter(event,"question");
-    var conversation_id = getParameter(event,"conversation");
-    var response = getParameter(event,"response")=="true";
+    var question_id = tools.getParameter(event,"question");
+    var conversation_id = tools.getParameter(event,"conversation");
+    var response = tools.getParameter(event,"response")=="true";
 
     var items = {
             "id": uniqid,
@@ -24,7 +25,7 @@ function setResponse (event, callback) {
         Item:items
     };
 
-    putItem(params, getMessage, callback);
+    putItem(params, tools.getMessage, callback);
 }
 
 function putItem(params, getMessage, callback) {
@@ -46,27 +47,5 @@ function putItem(params, getMessage, callback) {
         var result = getMessage('error',params.Item);
         callback(null, result);
     }
-}
-
-function getMessage(status,infos){
-    var body = {"status": status, infos};
-    var statusCode = 200;
-    return {
-        "statusCode": statusCode,
-        "headers": {},
-        "body": JSON.stringify(body)
-    };
-}
-
-function getParameter(event,param) {
-    var val = null;
-    if (event.queryStringParameters !== null && event.queryStringParameters !== undefined) {
-        if (event.queryStringParameters[param] !== undefined && 
-            event.queryStringParameters[param] !== null && 
-            event.queryStringParameters[param] !== "") {
-            val = event.queryStringParameters[param] ;
-        }
-    }
-    return val;
 }
 

@@ -8,10 +8,10 @@ exports.handler = function(event, context, callback) {
 function setTips (event, callback) {
 
     var uniqid = (new Date().getTime() + Math.floor((Math.random()*10000)+1)).toString(16);
-    var title = getParameter(event,"title");
-    var text = getParameter(event,"text");
-    var image = getParameter(event,"image");
-    var type = getParameter(event,"type");
+    var title = tools.getParameter(event,"title");
+    var text = tools.getParameter(event,"text");
+    var image = tools.getParameter(event,"image");
+    var type = tools.getParameter(event,"type");
 
     var items = {
             "id": uniqid,

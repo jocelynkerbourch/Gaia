@@ -1,4 +1,5 @@
 var AWS = require('aws-sdk');
+var tools = require('./tools.js');
 
 exports.handler = function(event, context, callback) {
     setQuestion (event, callback);
@@ -7,15 +8,15 @@ exports.handler = function(event, context, callback) {
 function setQuestion (event, callback) {
 
     var uniqid = (new Date().getTime() + Math.floor((Math.random()*10000)+1)).toString(16);
-    var question = getParameter(event,"question");
-    var mindTrue = parseInt(getParameter(event,"mind_true"));
-    var mindFalse = parseInt(getParameter(event,"mind_false"));
-    var eatTrue = parseInt(getParameter(event,"eat_true"));
-    var eatFalse = parseInt(getParameter(event,"eat_false"));
-    var moveTrue = parseInt(getParameter(event,"move_true"));
-    var moveFalse = parseInt(getParameter(event,"move_false"));
-    var sleepTrue = parseInt(getParameter(event,"sleep_true"));
-    var sleepFalse = parseInt(getParameter(event,"sleep_false"));
+    var question = tools.getParameter(event,"question");
+    var mindTrue = parseInt(tools.getParameter(event,"mind_true"));
+    var mindFalse = parseInt(tools.getParameter(event,"mind_false"));
+    var eatTrue = parseInt(tools.getParameter(event,"eat_true"));
+    var eatFalse = parseInt(tools.getParameter(event,"eat_false"));
+    var moveTrue = parseInt(tools.getParameter(event,"move_true"));
+    var moveFalse = parseInt(tools.getParameter(event,"move_false"));
+    var sleepTrue = parseInt(tools.getParameter(event,"sleep_true"));
+    var sleepFalse = parseInt(tools.getParameter(event,"sleep_false"));
 
     var items = {
             "id": uniqid,
@@ -34,7 +35,7 @@ function setQuestion (event, callback) {
         Item:items
     };
 
-    putItem(params, getMessage, callback);
+    putItem(params, tools.getMessage, callback);
 }
 
 function putItem(params, getMessage, callback) {
@@ -56,26 +57,3 @@ function putItem(params, getMessage, callback) {
         callback(null, result);
     }
 }
-
-function getMessage(status,infos){
-    var body = {"status": status, infos};
-    var statusCode = 200;
-    return {
-        "statusCode": statusCode,
-        "headers": {},
-        "body": JSON.stringify(body)
-    };
-}
-
-function getParameter(event,param) {
-    var val = null;
-    if (event.queryStringParameters !== null && event.queryStringParameters !== undefined) {
-        if (event.queryStringParameters[param] !== undefined && 
-            event.queryStringParameters[param] !== null && 
-            event.queryStringParameters[param] !== "") {
-            val = event.queryStringParameters[param] ;
-        }
-    }
-    return val;
-}
-
