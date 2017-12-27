@@ -44,16 +44,19 @@
 ## Develpement
 
 - Slack connnection and scenario create with Converse.ai
-	- [Converse.ai website](https://www.converse.ai)
+	- [Converse.ai website](http://www.converse.ai/)
 
 - BDD is aws DynamoDB 
-	- [DynamoDB Console](https://)
+	- [DynamoDB Console (eu west 3)](https://eu-west-3.console.aws.amazon.com/dynamodb/home?region=eu-west-3#tables:)
 	- Schema
 ![DynamoDB Schema](https://s3.eu-west-3.amazonaws.com/botgaia/github/schema_db.png "DynamoDB Schema")
 
 - Js Functions (NodeJs 6.1) is execute with less server aws Lambda
-	- [Lambda Console](https://)
+	- [Lambda Console (eu west 3)](https://eu-west-3.console.aws.amazon.com/lambda/home?region=eu-west-3#/functions)
 	- [Lambda Best Practices](http://docs.aws.amazon.com/en_en/lambda/latest/dg/best-practices.html)
 
-- End point is create with aws Apigateway
-	- [Apigateway Console](https://)
+- End point is create with aws API Gateway
+	- [AAPI Gateway Console (eu west 3)](https://eu-west-3.console.aws.amazon.com/apigateway/home?region=eu-west-3#/apis/nzsflv862b/resources)
+
+- Assets in aws s3 buckets
+	- [S3 Console (eu west 3)](https://s3.console.aws.amazon.com/s3/buckets/botgaia/?region=eu-west-3&tab=overview)
