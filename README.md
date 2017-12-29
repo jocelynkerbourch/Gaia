@@ -49,7 +49,7 @@
 - BDD is aws DynamoDB 
 	- [DynamoDB Console (eu west 3)](https://eu-west-3.console.aws.amazon.com/dynamodb/home?region=eu-west-3#tables:)
 	- Schema
-![DynamoDB Schema](https://s3.eu-west-3.amazonaws.com/botgaia/github/schema_db.png "DynamoDB Schema")
+![DynamoDB Schema](https://s3.eu-west-3.amazonaws.com/botgaia/github/schema_db.png?v2 "DynamoDB Schema")
 
 - Js Functions (NodeJs 6.1) is execute with less server aws Lambda
 	- [Lambda Console (eu west 3)](https://eu-west-3.console.aws.amazon.com/lambda/home?region=eu-west-3#/functions)
