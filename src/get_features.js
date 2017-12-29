@@ -2,10 +2,10 @@ var AWS = require('aws-sdk');
 var tools = require('./tools.js');
 
 exports.handler = function(event, context, callback) {
-    getQuestions (event, callback);
+    getFeatures (event, callback);
 }
  
-function getQuestions (event, callback) {
+function getFeatures (event, callback) {
 
     var conversation = tools.getParameter(event,"conversation");
     var params = {
@@ -16,14 +16,18 @@ function getQuestions (event, callback) {
     documentClient.scan(params, function(err, data) {
         
         var status = "scan";
-        var infos={"params":params, "data":{}};
+        var infos={"params":params};
         if (err) {
             status = "error";
         } else {
             if (data.Items.length==0){
                 status = "empty";
             }else{
-                infos['data']=data.Items;
+                var message = "";
+                data.Items.forEach(function(item,idx, array) {
+                    message+= "(" + item.id + ") " + item.phrase + "\n" + item.description;
+                });
+                infos['message']=message;
             }
         }
         var result = tools.getMessage(status,infos);

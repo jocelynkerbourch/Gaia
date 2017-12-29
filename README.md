@@ -23,7 +23,7 @@
 ```
  > Add question
 ```
- - List all question
+ - List all questions
 ```
  > Give me the list of questions
 ```
@@ -56,7 +56,7 @@
 	- [Lambda Best Practices](http://docs.aws.amazon.com/en_en/lambda/latest/dg/best-practices.html)
 
 - End point is create with aws API Gateway
-	- [AAPI Gateway Console (eu west 3)](https://eu-west-3.console.aws.amazon.com/apigateway/home?region=eu-west-3#/apis/nzsflv862b/resources)
+	- [API Gateway Console (eu west 3)](https://eu-west-3.console.aws.amazon.com/apigateway/home?region=eu-west-3#/apis/nzsflv862b/resources)
 
 - Assets in aws s3 buckets
 	- [S3 Console (eu west 3)](https://s3.console.aws.amazon.com/s3/buckets/botgaia/?region=eu-west-3&tab=overview)

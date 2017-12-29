@@ -37,10 +37,13 @@ function getResponsesByConversation(params, getRamdomQuestion, getMessage, callb
                 });
 
                 var paramsSelect = {
-                    TableName: "gaia_questions",
-                    ExpressionAttributeValues: attributes,
-                    FilterExpression: expression,
+                    TableName: "gaia_questions"
                 };
+                
+                if (attributes.length>0){
+                    paramsSelect['ExpressionAttributeValues'] = attributes;
+                    paramsSelect['FilterExpression'] = expression;
+                }
                 
                 getRamdomQuestion(paramsSelect, getMessage, callback);
             }

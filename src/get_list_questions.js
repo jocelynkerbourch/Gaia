@@ -16,14 +16,18 @@ function getQuestions (event, callback) {
     documentClient.scan(params, function(err, data) {
         
         var status = "scan";
-        var infos={"params":params, "data":{}};
+        var infos={"params":params};
         if (err) {
             status = "error";
         } else {
             if (data.Items.length==0){
                 status = "empty";
             }else{
-                infos['data']=data.Items;
+                var message = "";
+                data.Items.forEach(function(item,idx, array) {
+                    message+= "(" + item.id + ")\n" + item.question + "\n";
+                });
+                infos['message']=message;
             }
         }
         var result = tools.getMessage(status,infos);
