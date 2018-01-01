@@ -47,7 +47,14 @@
 ```
 > Donne moi le détail d'un tips
 ```
-
+- Delete question
+```
+> Je veux supprimer une question
+```
+- Delete tips
+```
+> Je veux supprimer un tips
+```
 
 ## Develpement
 

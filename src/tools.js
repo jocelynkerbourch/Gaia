@@ -34,6 +34,10 @@ module.exports ={
         }
 
         return array;
+    },
+
+    isEmptyObject : function (obj) {
+        return !Object.keys(obj).length;
     }
     
 };
