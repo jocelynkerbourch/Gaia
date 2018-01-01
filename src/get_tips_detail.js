@@ -23,16 +23,24 @@ function getTipsDetail (event, callback) {
     documentClient.query(params, function(err, data) {
         
         var status = "scan";
+        var message = "";
         var infos={"params":params};
         if (err) {
             status = "error";
         } else {
             if (data.Items.length==0){
                 status = "empty";
+                message = "Cet ID n'existe pas 🤔";
             }else{
                 infos["data"] = data;
+                var item = data.Items[0];
+                message = "*Titre* : " + item.title + "\n";
+                message+= "Image : " + item.image + "\n";
+                message+= "Type : " + item.type + "\n";
+                message+= "Tips : " + item.text + "\n";
             }
         }
+        infos["message"] = message;
         var result = tools.getMessage(status,infos);
         callback(null, result);
     });

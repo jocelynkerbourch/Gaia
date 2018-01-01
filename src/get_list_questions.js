@@ -25,7 +25,7 @@ function getQuestions (event, callback) {
             }else{
                 var message = "Il y a " + data.Items.length + " questions  : \n";
                 data.Items.forEach(function(item,idx, array) {
-                    message+= "(" + item.id + ")\n" + item.question + "\n";
+                    message+= "• (_" + item.id + "_)\n" + item.question + "\n";
                 });
                 infos['message']=message;
             }

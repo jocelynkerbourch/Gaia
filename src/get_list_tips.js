@@ -25,7 +25,7 @@ function getTips (event, callback) {
             }else{
                 var message = "Il y a " + data.Items.length + " tips  : \n";
                 data.Items.forEach(function(item,idx, array) {
-                    message+= "(" + item.id + ")\n" + item.title + "\n";
+                    message+= "• (_" + item.id + "_)\n" + item.title + "\n";
                 });
                 infos['message']=message;
             }
