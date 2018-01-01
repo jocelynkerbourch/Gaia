@@ -23,7 +23,7 @@ function getTips (event, callback) {
             if (data.Items.length==0){
                 status = "empty";
             }else{
-                var message = "";
+                var message = "Il y a " + data.Items.length + " tips  : \n";
                 data.Items.forEach(function(item,idx, array) {
                     message+= "(" + item.id + ")\n" + item.title + "\n";
                 });
