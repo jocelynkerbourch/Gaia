@@ -20,7 +20,7 @@ function getQuestionDetail (event, callback) {
     };
 
     var documentClient = new AWS.DynamoDB.DocumentClient();
-    documentClient.scan(params, function(err, data) {
+    documentClient.query(params, function(err, data) {
         
         var status = "scan";
         var infos={"params":params};
@@ -30,7 +30,7 @@ function getQuestionDetail (event, callback) {
             if (data.Items.length==0){
                 status = "empty";
             }else{
-                var infos={"data":data};
+                infos["data"] = data;
             }
         }
         var result = tools.getMessage(status,infos);
