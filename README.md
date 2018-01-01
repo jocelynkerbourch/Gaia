@@ -10,34 +10,42 @@
 
  - Ask 5 questions and give you advice
 ```
- > Give me a tips
+ > Donne moi un conseil
 ```
  - Displays the list of features
 ```
-> What are your features
+> Que peux tu faire ?
 ```
 
 #### Administrator commands
 
 - Add a question
 ```
- > Add question
+ > Je veux ajouter une nouvelle question
 ```
  - List all questions
 ```
- > Give me the list of questions
+ > Donne moi la liste des questions
 ```
 - Add a tips
 ```
-> Add tips
+> Je veux ajouter un nouveau tips
 ```
  - List all tips
 ```
- > Give me the list of tips
+ > Donne moi la liste des tips
 ```
 - Displays the usage stats of the bot
 ```
-> Give me stats
+> Donne moi les stats
+```
+- Displays the usage stats of the bot
+```
+> Donne moi le détail d'une question
+```
+- Displays the usage stats of the bot
+```
+> Donne moi le détail d'un tips
 ```
 
 
